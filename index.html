@@ -1,309 +1,260 @@
-<!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="utf-8">
-<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,600&display=fallback&text=GHIMaceijkmostyz'"
-    rel="stylesheet">
-<link
-    href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,600;1,400&display=swap&text=ACEGIMHSTUVabcdefghijklmnopqrstuvwxyz()"
-    rel="stylesheet">
-<title>Maciej Goszczycki</title>
-<meta
-    name="description"
-    content="Maciej Goszczycki is a master's Computer Science student at the Chalmers University of Technology.">
-<style>
-    * {
+<!DOCTYPE html>
+<html lang="en-IE">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <title>Maciej Goszczycki</title>
+    <meta
+      name="description"
+      content="Maciej Goszczycki is a master's Computer Science student at the Chalmers University of Technology."
+    />
+    <style>
+      * {
         padding: 0;
         margin: 0;
-    }
+      }
 
-    h1 {
+      h1 {
         font: inherit;
-        font-size: 120%;
-        font-weight: 600;
-    }
+        display: inline;
+      }
 
-    body {
+      html {
+        font-size: 20px;
+        height: 100%;
+      }
+
+      body {
         font-weight: 400;
         line-height: 1.5;
-        font-size: 18px;
-        max-width: 600px;
-        margin: 120px 60px 0;
-    }
+        font-family: Optima, Candara, "Noto Sans", source-sans-pro, sans-serif;
+        min-height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
 
-    header {
-        font-family: 'Source Code Pro', monospace;
-        font-style: italic;
-    }
+      header {
+        font-size: 2rem;
+        font-weight: bold;
+      }
 
-    main {
-        font-family: 'Overpass', sans-serif;
-    }
+      body {
+        background: #ffffff;
+        color: #222222;
+      }
 
-    body {
-        background: #fff;
-        color: #222;
-    }
-
-    @media (prefers-color-scheme: dark) {
+      @media (prefers-color-scheme: dark) {
         body {
-            font-weight: 300;
-            background: #222;
-            color: #eee;
+          background: #131313;
+          color: #eeeeee;
         }
-    }
+      }
 
-    .amazon {
-        text-decoration: underline;
-        text-decoration-color: #FF9900;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-    }
+      .content {
+        margin: 3rem;
+        max-width: 30rem;
+      }
 
-    a {
-        color: #22f;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .blue,
-        a {
-            color: #26f;
-        }
-    }
-
-    a {
+      a {
         font: inherit;
         font-weight: 600;
-        padding: 5px 5px 5px 0;
-        text-decoration: none;
-    }
+        text-underline-offset: 0.2rem;
+        text-decoration-thickness: 0.05rem;
+        transition: text-decoration-thickness 200ms ease-out, color 200ms ease;
+      }
 
-    header,
-    p {
-        margin-bottom: 40px;
-    }
+      a:hover {
+        color: #95c8ff;
+        text-decoration-thickness: 0.15rem;
+      }
 
-    a:hover {
-        text-decoration: underline;
-    }
+      a {
+        color: #007bff;
+      }
 
-    #big {
-        font-size: 600%;
-        font-weight: 600;
-        font-style: normal;
-    }
-
-    #big {
-        color: #000;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        #big {
-            color: #fff;
+      @media (prefers-color-scheme: dark) {
+        a {
+          color: #4fa4ff;
         }
-    }
+      }
 
-    #tape {
+      header,
+      p {
+        margin-bottom: 2rem;
+      }
+
+      #tape {
         position: fixed;
         right: 8%;
         top: 0;
         height: calc(100vh + 20px);
         width: 0;
         z-index: -1;
-    }
+      }
 
-    @media (max-width: 500px) {
-        #big {
-            font-size: 500%;
+      @media (max-width: 55rem) {
+        .content {
+          margin: 2rem;
         }
+      }
+    </style>
+    <script>
+      const mobileQuery = window.matchMedia("(max-width: 55rem)");
 
-        body {
-            margin: 0 20px;
-        }
-    }
-</style>
-<script>
-    const mobileQuery = window.matchMedia("(max-width: 500px)");
-
-    const dimensions = () => {
-        const scale = mobileQuery.matches ? 1.5 : 1;
+      const dimensions = () => {
+        const scale = mobileQuery.matches ? 2.2 : 1;
         return {
-            spacing: Math.floor(20 / scale),
-            sprocket_radius: Math.floor(4 / scale),
-            punch_radius: Math.floor(8 / scale)
+          spacing: Math.floor(20 / scale),
+          sprocket_radius: Math.floor(5 / scale),
+          punch_radius: Math.floor(8 / scale),
         };
-    }
+      };
 
-    const parity = (x) => {
+      const parity = (x) => {
         let odd = false;
         while (x) {
-            if (x & 1) odd = !odd;
-            x >>= 1;
+          if (x & 1) odd = !odd;
+          x >>= 1;
         }
         return odd;
-    }
+      };
 
-    window.addEventListener("load", () => {
-        const content = document.documentElement.innerHTML.replace(/\s\s+/g, ' ');
-        const canvas = document.getElementById("tape")
+      window.addEventListener("load", () => {
+        const content = document.documentElement.innerHTML.replace(
+          /\s\s+/g,
+          " "
+        );
+        const canvas = document.getElementById("tape");
         const ctx = canvas.getContext("2d", { alpha: true });
-
 
         let vertical_offset = 0;
         let row_offset = Math.floor(Math.random() * content.length);
         let dark_mode = false;
 
         const forceRender = () => {
-            const dims = dimensions();
+          const dims = dimensions();
 
-            const drawCircle = (row, hole, radius) => {
-                ctx.beginPath();
-                ctx.arc(hole * dims.spacing + dims.spacing,
-                    (row - 1) * dims.spacing, radius, 0, Math.PI * 2);
-                ctx.fill();
+          const drawCircle = (row, hole, radius) => {
+            ctx.beginPath();
+            ctx.arc(
+              hole * dims.spacing + dims.spacing,
+              (row - 1) * dims.spacing,
+              radius,
+              0,
+              Math.PI * 2
+            );
+            ctx.fill();
+          };
+
+          const drawLine = (x1, y1, x2, y2) => {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+          };
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.lineWidth = 1;
+          ctx.fillStyle = dark_mode ? "#222222" : "#e6e6e6";
+          const row_count = Math.ceil(canvas.height / dims.spacing) + 1;
+          for (let row = 0; row < row_count + 1; ++row) {
+            const index = (row_offset + row_count - row) % content.length;
+            const code = content.charCodeAt(index);
+            for (let hole = 0; hole < 7; ++hole) {
+              if (code & (1 << hole)) {
+                drawCircle(row, hole + (hole > 4), dims.punch_radius);
+              }
             }
-
-            const drawLine = (x1, y1, x2, y2) => {
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.stroke();
-            }
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = dark_mode ? "#4a4a4a" : "#e0e0e0";
-            drawLine(1, 0, 1, canvas.height);
-            ctx.strokeStyle = dark_mode ? "#555555" : "#d0d0d0";
-            drawLine(canvas.width - 1, 0, canvas.width - 1, canvas.height);
-
-            ctx.lineWidth = 1;
-            ctx.fillStyle = dark_mode ? "#333333" : "#eeeeee";
-            const row_count = Math.ceil(canvas.height / dims.spacing) + 1;
-            for (let row = 0; row < row_count + 1; ++row) {
-                const index = (row_offset + row_count - row) % content.length;
-                const code = content.charCodeAt(index);
-                for (let hole = 0; hole < 7; ++hole) {
-                    if (code & (1 << hole)) {
-                        drawCircle(row, hole + (hole > 4), dims.punch_radius);
-                    }
-                }
-                if (parity(code)) drawCircle(row, 8, dims.punch_radius);
-                drawCircle(row, 5, dims.sprocket_radius);
-            }
-        }
+            if (parity(code)) drawCircle(row, 8, dims.punch_radius);
+            drawCircle(row, 5, dims.sprocket_radius);
+          }
+        };
 
         const query = window.matchMedia("(prefers-color-scheme: dark)");
         dark_mode = query.matches;
         query.addListener((e) => {
-            dark_mode = e.matches;
-            forceRender();
+          dark_mode = e.matches;
+          forceRender();
         });
 
         const render = () => {
-            const dims = dimensions();
-            vertical_offset += 1;
-            if (vertical_offset > dims.spacing) {
-                ++row_offset;
-                vertical_offset = 0;
-                forceRender();
-            }
-            canvas.style.transform = `translateY(${vertical_offset - dims.spacing}px)`
-        }
+          const dims = dimensions();
+          vertical_offset += 1;
+          if (vertical_offset > dims.spacing) {
+            ++row_offset;
+            vertical_offset = 0;
+            forceRender();
+          }
+          canvas.style.transform = `translateY(${
+            vertical_offset - dims.spacing
+          }px)`;
+        };
 
         const resizeRender = () => {
-            const width = dimensions().spacing * 10;
-            canvas.style.width = `${width}px`;
-            canvas.width = width;
-            canvas.height = canvas.offsetHeight;
-            forceRender();
-        }
+          const width = dimensions().spacing * 10;
+          canvas.style.width = `${width}px`;
+          canvas.width = width;
+          canvas.height = canvas.offsetHeight;
+          forceRender();
+        };
 
         // Debounce resize events, wait 10ms.
         let resize_timeout_handle = null;
         window.addEventListener("resize", () => {
-            if (resize_timeout_handle) {
-                clearTimeout(resize_timeout_handle);
-            }
-            resize_timeout_handle = setTimeout(() => {
-                resize_timeout_handle = null;
-                resizeRender();
-            }, 10);
+          if (resize_timeout_handle) {
+            clearTimeout(resize_timeout_handle);
+          }
+          resize_timeout_handle = setTimeout(() => {
+            resize_timeout_handle = null;
+            resizeRender();
+          }, 10);
         });
 
         const renderLoop = () => {
-            if (!resize_timeout_handle) {
-                render();
-            }
-            window.requestAnimationFrame(renderLoop);
-        }
+          if (!resize_timeout_handle) {
+            render();
+          }
+          window.requestAnimationFrame(renderLoop);
+        };
 
         // Get this show on the road.
         ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
         resizeRender();
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            window.requestAnimationFrame(renderLoop);
+          window.requestAnimationFrame(renderLoop);
         }
-    });
-</script>
+      });
+    </script>
+  </head>
 
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "WebSite",
-            "@id": "https://maciej.ie/#website",
-            "url": "https://maciej.ie/",
-            "name": "Maciej Goszczycki",
-            "description": "Maciej Goszczycki's Personal Site",
-            "publisher": { "@id": "https://maciej.ie/#maciej" },
-            "inLanguage": "en-IE"
-        },
-        {
-            "@type": ["WebPage", "ProfilePage"],
-            "@id": "https://maciej.ie/#webpage",
-            "url": "https://maciej.ie/",
-            "name": "Maciej Goszczycki - Homepage",
-            "isPartOf": { "@id": "https://maciej.ie/#website" },
-            "datePublished": "2018-06-01T07:45:43+00:00",
-            "dateModified": "2019-10-30T07:52:44+00:00",
-            "description": "Maciej Goszczycki is a master's Computer Science student at the Chalmers University of Technology. Find out more.",
-            "inLanguage": "en-IE"
-        },
-        {
-            "@type": "Person",
-            "@id": "https://maciej.ie/#maciej",
-            "name": "Maciej Goszczycki",
-            "description": "Maciej Goszczycki is a master's Computer Science student at the Chalmers University of Technology",
-            "sameAs": ["https://twitter.com/maciej_irl", "https://github.com/mgoszcz2"],
-            "mainEntityOfPage": { "@id": "https://maciej.ie/#webpage" }
-        }
-    ]
-}
-</script>
+  <body>
+    <div class="content">
+      <header>
+        I&rsquo;m
+        <h1>Maciej Goszczycki</h1>
+      </header>
 
-<body>
-    <header>
-        <span id="big">Hey!</span><br>
-        I'm<br>
-        <h1>Maciej<br>Goszczycki</h1>
-    </header>
-
-    <main>
+      <main>
         <p>
-            I dabble in making computers do things, neatly.
-            I like design, photography, and stuff made by humans.
-            I work deep down in database mines at <span class="amazon">Amaz</span>on Dublin.
+          I&rsquo;m a Dublin-based software engineer with 3+ years of experience
+          in tackling complexity and clutter. I like design, photography, and
+          stuff made by humans. I currently work on databases at&nbsp;Amazon.
         </p>
-
-        <section>
-            <a href="https://github.com/nsmaciej">GitHub</a>
-            <a href="/cv.pdf">CV</a>
-            <a href="mailto:hi@maciej.ie">Email</a>
-        </section>
-    </main>
-
+        <p>
+          Find me on
+          <a href="https://github.com/nsmaciej">GitHub</a> or
+          <a href="https://www.linkedin.com/in/nsmaciej/">LinkedIn</a>. You can
+          also <a href="mailto:hi@maciej.ie">e&#8209;mail me</a>.
+        </p>
+        <p>
+          While you&rsquo;re here, enjoy the source of this website scrolling
+          past you on an old-fashioned punched tape. Or check out my
+          <a href="https://wordy.maciej.ie/">Wordle clone</a>.
+        </p>
+      </main>
+    </div>
     <canvas id="tape"></canvas>
-</body>
+  </body>
+</html>
